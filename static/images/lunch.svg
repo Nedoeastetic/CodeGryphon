@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Lunch Event Placeholder</title>
+  <desc id="desc">Colorful lunch themed corporate event placeholder image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff3e6" />
+      <stop offset="100%" stop-color="#ffe0b2" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)" rx="24" />
+  <circle cx="160" cy="130" r="70" fill="#ffcc80" opacity="0.6" />
+  <circle cx="640" cy="320" r="90" fill="#ffb74d" opacity="0.45" />
+  <rect x="230" y="120" width="340" height="210" rx="18" fill="#ffffff" opacity="0.95" />
+  <text x="400" y="205" text-anchor="middle" font-size="64">🍽️</text>
+  <text x="400" y="260" text-anchor="middle" font-size="36" font-family="Arial, sans-serif" fill="#5d4037">Team Lunch</text>
+</svg>

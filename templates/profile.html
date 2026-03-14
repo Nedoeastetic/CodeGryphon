@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }} - Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">🎉 Corporate Events</div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/create" class="nav-link">Create Event</a>
+            <a href="/profile/1" class="nav-link active">My Profile</a>
+        </div>
+    </nav>
+
+    <main class="container profile-layout">
+        <section class="profile-card">
+            <div class="avatar">{{ user.profile_pic_emoji }}</div>
+            <h1>{{ user.name }}</h1>
+            <p class="username">@{{ user.username }}</p>
+            <p><strong>Department:</strong> {{ user.department }}</p>
+            <p><strong>Tenure:</strong> {{ user.tenure }} years</p>
+            <p><strong>Interests:</strong> {{ user.interests }}</p>
+            <p class="bio">{{ user.bio }}</p>
+        </section>
+
+        <section class="joined-events">
+            <h2>Joined Events</h2>
+            {% if events %}
+                <div class="event-feed">
+                    {% for event in events %}
+                        <article class="event-card" id="event-{{ event.id }}">
+                            <div class="event-image">{{ event.emoji }}</div>
+                            <h3>{{ event.title }}</h3>
+                            <p class="event-meta">{{ event.date }} • {{ event.time }}</p>
+                            <p class="event-meta">{{ event.location }}</p>
+                            <p class="event-meta">{{ event.description }}</p>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty-text">No events joined yet.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

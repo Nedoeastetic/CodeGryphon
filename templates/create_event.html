@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">🎉 Corporate Events</div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/create" class="nav-link active">Create Event</a>
+            <a href="/profile/1" class="nav-link">My Profile</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="form-card">
+            <h1>Create New Event</h1>
+            <form method="POST" action="{{ url_for('create_event') }}" class="event-form">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text" required>
+
+                <label for="date">Date</label>
+                <input id="date" name="date" type="date" required>
+
+                <label for="time">Time</label>
+                <input id="time" name="time" type="time" required>
+
+                <label for="location">Location</label>
+                <input id="location" name="location" type="text" required>
+
+                <label for="emoji">Emoji</label>
+                <input id="emoji" name="emoji" type="text" maxlength="2" placeholder="🎉">
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <button type="submit" class="btn">Create Event</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

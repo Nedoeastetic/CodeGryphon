@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Event Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">🎉 Corporate Events</div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" class="nav-link active">Home</a>
+            <a href="{{ url_for('create_event') }}" class="nav-link">Create Event</a>
+            <a href="{{ url_for('profile', user_id=1) }}" class="nav-link">My Profile</a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="calendar">
+            <div class="calendar-header">
+                <h1>{{ month_name }}</h1>
+                <p>Team calendar overview</p>
+            </div>
+
+            <div class="calendar-grid week-days">
+                <div class="week-day">Mon</div>
+                <div class="week-day">Tue</div>
+                <div class="week-day">Wed</div>
+                <div class="week-day">Thu</div>
+                <div class="week-day">Fri</div>
+                <div class="week-day">Sat</div>
+                <div class="week-day">Sun</div>
+            </div>
+
+            <div class="calendar-grid">
+                {% for day in calendar_days %}
+                    <div class="calendar-day {% if not day.day %}muted-day{% endif %}">
+                        {% if day.day %}
+                            <div class="day-number">{{ day.day }}</div>
+                            {% for event in day.events %}
+                                <a
+                                    class="event-block"
+                                    href="#event-{{ event.id }}"
+                                    style="background-color: {{ event.color }};"
+                                    title="{{ event.title }}"
+                                >
+                                    {{ event.emoji }} {{ event.title }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="feed-section">
+            <h2>Upcoming Events</h2>
+            <div class="event-feed">
+                {% for event in events %}
+                    <article class="event-card" id="event-{{ event.id }}">
+                        <div class="event-image">{{ event.emoji }}</div>
+                        <h3>{{ event.title }}</h3>
+                        <p class="event-meta">{{ event.date }} • {{ event.time }}</p>
+                        <p class="event-meta">{{ event.location }}</p>
+                        <p class="event-meta">{{ event.participants | length }} joined</p>
+                        <a class="btn" href="{{ url_for('join_event', event_id=event.id) }}">Join</a>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
